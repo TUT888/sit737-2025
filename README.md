@@ -1,10 +1,12 @@
-# SIT737 - 2025 - Prac 4
+# SIT737 - 2025 - Prac 4c
 
-This is a practical exercise of SIT737 (Week 4)
+This is a practical exercise of SIT737 (Week 4, credit task)
 
 ![image.png](image.png)
 
+
 ## Features included
+### Base feature
 - Logging with `Winston`
   - All logs are stored at **logs/combined.log**
   - Error logs are stored at **logs/error.log**
@@ -14,6 +16,13 @@ This is a practical exercise of SIT737 (Week 4)
   - Multiplication operation at `localhost:3040/mul?n1={n1}&n2={n2}`
   - Division operation at `localhost:3040/div?n1={n1}&n2={n2}`
 - Calculator web UI at `localhost:3040`
+
+### Updated advanced feature <span style="color: red">(new)</span>
+- New calculator services API:
+  - Exponentiation operation at `localhost:3040/exp?n1={n1}&n2={n2}`
+  - Square root operation at `localhost:3040/sqrt?n1={n1}`
+  - Modulo operation at `localhost:3040/mod?n1={n1}&n2={n2}`
+- New calculator options for web UI `localhost:3040`
 
 ## How to run
 - Step 1: Clone this repository branch

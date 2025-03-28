@@ -1,9 +1,32 @@
-{"level":"info","message":"Parameters 2 and 3 received for addition","service":"calculator-microservice"}
-{"level":"info","message":"Parameters 2 and 0 received for division","service":"calculator-microservice"}
-{"level":"error","message":"Error: Zero division","service":"calculator-microservice"}
-{"level":"info","message":"Parameters NaN and 0 received for division","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and null received for square root","service":"calculator-microservice"}
+{"level":"error","message":"ReferenceError: n is not defined","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and null received for square root","service":"calculator-microservice"}
+{"level":"error","message":"ReferenceError: n is not defined","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and null received for square root","service":"calculator-microservice"}
+{"level":"error","message":"ReferenceError: n is not defined","service":"calculator-microservice"}
+{"level":"info","message":"Parameters NaN and NaN received for exponentiation","service":"calculator-microservice"}
 {"level":"error","message":"Error: Num 1 is incorrectly defined","service":"calculator-microservice"}
-{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculator-microservice"}
-{"level":"info","message":"Parameters NaN and NaN received for addition","service":"calculator-microservice"}
-{"level":"error","message":"Error: Num 1 is incorrectly defined","service":"calculator-microservice"}
-{"level":"info","message":"Parameters 2 and 3 received for addition","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and 2 received for exponentiation","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for exponentiation","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 0 received for exponentiation","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and -1 received for exponentiation","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and NaN received for exponentiation","service":"calculator-microservice"}
+{"level":"error","message":"Error: Num 2 is incorrectly defined","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and null received for square root","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 1 received for modulo","service":"calculator-microservice"}
+{"level":"error","message":"ReferenceError: n is not defined","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 1 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 2 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 3 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 12 and 5 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 12 and 5 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 12 and 5 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 12 and 5 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 13 and 5 received for modulo","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 13 and null received for square root","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 13 and 5 received for exponentiation","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 2 and 5 received for exponentiation","service":"calculator-microservice"}

@@ -34,6 +34,10 @@ const sub = (n1, n2) => { return n1 - n2; }
 const div = (n1, n2) => { return n1 / n2; }
 const mul = (n1, n2) => { return n1 * n2; }
 
+const exp = (n1, n2) => { return n1 ** n2; }
+const sqrt = (n) => { return Math.sqrt(n); }
+const mod = (n1, n2) => { return n1 % n2; }
+
 const validateInput = (n1, n2, operation) => {
   // Log the information received from request
   logger.info(`Parameters ${n1} and ${n2} received for ${operation}`);
@@ -42,13 +46,19 @@ const validateInput = (n1, n2, operation) => {
   if (isNaN(n1)) {
     throw new Error("Num 1 is incorrectly defined");
   }
-  if (isNaN(n2)) {
-    throw new Error("Num 2 is incorrectly defined");
-  }
-
-  if (n1 === NaN || n2 === NaN) {
+  if (n1 === NaN) {
     throw new Error("Parsing Error");
   }
+
+  // If the operation is square root, we don't need n2
+  if (operation !== "square root") {
+    if (isNaN(n2)) {
+      throw new Error("Num 2 is incorrectly defined");
+    }
+    if (n2 === NaN) {
+      throw new Error("Parsing Error");
+    }
+  }  
 
   if (operation === "division" && n2 === 0) {
     throw new Error("Zero division");
@@ -65,7 +75,79 @@ app.get("/", (req, res) => {
   res.render("index.html");
 })
 
-// ------ Endpoint APIs ------ //
+// ------ Endpoint APIs: Advanced calculation ------ //
+// Exponentiation
+app.get("/exp", (req, res) => {
+  try {
+    // Receive and validate input numbers
+    const n1 = parseFloat(req.query.n1);
+    const n2 = parseFloat(req.query.n2);
+    validateInput(n1, n2, "exponentiation");
+
+    // Calculate the result and send JSON response
+    const result = exp(n1, n2);
+    res.status(200).json({
+      statuscode: 200,
+      data: result
+    });
+  } catch (error) {
+    // Catch the thrown exception if encounter errors 
+    errorHandling(error);
+    res.status(500).json({
+      statuscode: 500,
+      msg: error.toString()
+    })
+  }
+})
+
+// Square root
+app.get("/sqrt", (req, res) => {
+  try {
+    // Receive and validate input numbers
+    const n1 = parseFloat(req.query.n1);
+    validateInput(n1, null, "square root");
+
+    // Calculate the result and send JSON response
+    const result = sqrt(n1);
+    res.status(200).json({
+      statuscode: 200,
+      data: result
+    });
+  } catch (error) {
+    // Catch the thrown exception if encounter errors 
+    errorHandling(error);
+    res.status(500).json({
+      statuscode: 500,
+      msg: error.toString()
+    })
+  }
+})
+
+// Modulo
+app.get("/mod", (req, res) => {
+  try {
+    // Receive and validate input numbers
+    const n1 = parseFloat(req.query.n1);
+    const n2 = parseFloat(req.query.n2);
+    validateInput(n1, n2, "modulo");
+
+    // Calculate the result and send JSON response
+    const result = mod(n1, n2);
+    res.status(200).json({
+      statuscode: 200,
+      data: result
+    });
+  } catch (error) {
+    // Catch the thrown exception if encounter errors 
+    errorHandling(error);
+    res.status(500).json({
+      statuscode: 500,
+      msg: error.toString()
+    })
+  }
+})
+
+// ------ Endpoint APIs: Basic calculation ------ //
 // Addition
 app.get("/add", (req, res) => {
   try {

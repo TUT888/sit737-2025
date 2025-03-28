@@ -42,6 +42,9 @@
           <option value="sub">Subtraction</option>
           <option value="mul">Multiplication</option>
           <option value="div">Division</option>
+          <option value="exp">Exponentiation</option>
+          <option value="sqrt">Square root</option>
+          <option value="mod">Modulo</option>
         </select>
       </div>
       <div class="form-content">
@@ -63,6 +66,18 @@
   const resultElement = document.getElementById("result");
   const errorElement = document.getElementById("error");
 
+  const num1Element = document.getElementById("num1");
+  const num2Element = document.getElementById("num2");
+  const opElement = document.getElementById("operation");
+
+  opElement.addEventListener("change", (event) => {
+    if (opElement.value === "sqrt") {
+      num2Element.disabled = true;
+    } else {
+      num2Element.disabled = false;
+    }
+  })
+
   const fetchData = async () => {
     let result = await fetch()
   }
@@ -70,12 +85,8 @@
   formElement.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const num1 = document.getElementById("num1").value;
-    const num2 = document.getElementById("num2").value;
-    const op = document.getElementById("operation").value;
-
     let xhr = new XMLHttpRequest();
-    let url = `http://localhost:3040/${op}?n1=${num1}&n2=${num2}`;
+    let url = `http://localhost:3040/${opElement.value}?n1=${num1Element.value}&n2=${num2Element.value}`;
     xhr.open("GET", url, true);
 
     xhr.onreadystatechange = function () {
