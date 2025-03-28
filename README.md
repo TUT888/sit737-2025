@@ -35,7 +35,7 @@ Step-by-step instructions that explain the process as below:
   - Import the express
   - Create a new express server and serve all files in public folder
   - Define the port
-2. **Set up winston logger **
+2. **Set up winston logger**
   - Import winston
   - Create new winston logger, which will log all important level of info or less to `combined.log` and error in `error.log`
   - Set up the logger to print the log to the console in development only
