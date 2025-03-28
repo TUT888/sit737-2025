@@ -1,0 +1,2 @@
+{"level":"error","message":"Error: Zero division","service":"calculator-microservice"}
+{"level":"error","message":"Error: Num 1 is incorrectly defined","service":"calculator-microservice"}

@@ -1,0 +1,16 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "Simple calculator microservice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alice",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "winston": "^3.17.0"
+  }
+}
