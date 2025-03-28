@@ -27,7 +27,7 @@ This is a practical exercise of SIT737 (Week 4, credit task)
 ## How to run
 - Step 1: Clone this repository branch
   ```
-  git clone -b prac4 https://github.com/TUT888/sit737-2025.git
+  git clone -b prac4c https://github.com/TUT888/sit737-2025.git
   ```
 - Step 2: Install dependencies (you must have Node.js installed in your device first)
   ```
