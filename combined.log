@@ -1,0 +1,10 @@
+{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculation-service"}
+{"level":"info","message":"Parameters 1 and 2 received for subtraction","service":"calculation-service"}
+{"level":"info","message":"Parameters 1 and 2 received for multiplication","service":"calculation-service"}
+{"level":"info","message":"Parameters 1 and 2 received for division","service":"calculation-service"}
+{"level":"info","message":"Parameters 1 and NaN received for division","service":"calculation-service"}
+{"level":"error","message":"Error: Num 2 is incorrectly defined","service":"calculation-service"}
+{"level":"info","message":"Parameters NaN and 2 received for division","service":"calculation-service"}
+{"level":"error","message":"Error: Num 1 is incorrectly defined","service":"calculation-service"}
+{"level":"info","message":"Parameters 1 and 0 received for division","service":"calculation-service"}
+{"level":"error","message":"Error: Zero division","service":"calculation-service"}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  #error {
+    color: brown;
+  }
+
+  .form-content {
+    padding: 0.5em;
+  }
+
+  form {
+    max-width: fit-content;
+    align-content: center;
+    background-color: antiquewhite;
+  }
+  
+</style>
+<body>
+  <h1>Welcome to our calculator web application</h1>
+  <div class="request-section">
+    <h3>Enter your numbers</h3>
+    <form id="calculation-form">
+      <div class="form-content">
+        <label for="num1">Input num 1</label>
+        <input type="text" id="num1" name="num1">
+      </div>
+      <div class="form-content">
+        <label for="num2">Input num 2</label>
+        <input type="text" id="num2" name="num2">
+      </div>
+      <div class="form-content">
+        <label for="operation">Operation</label>
+        <select id="operation" name="operation">
+          <option value="add" selected>Addition</option>
+          <option value="sub">Subtraction</option>
+          <option value="mul">Multiplication</option>
+          <option value="div">Division</option>
+        </select>
+      </div>
+      <div class="form-content">
+        <button type="submit">Calculate</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="response-section">
+    <h3>Result</h3>
+    <p id="result"></p>
+    <p id="error"></p>
+  </div>
+</body>
+</html>
+
+<script>
+  const formElement = document.getElementById("calculation-form");
+  const resultElement = document.getElementById("result");
+  const errorElement = document.getElementById("error");
+
+  const fetchData = async () => {
+    let result = await fetch()
+  }
+
+  formElement.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const num1 = document.getElementById("num1").value;
+    const num2 = document.getElementById("num2").value;
+    const op = document.getElementById("operation").value;
+
+    let xhr = new XMLHttpRequest();
+    let url = `http://localhost:3040/${op}?n1=${num1}&n2=${num2}`;
+    xhr.open("GET", url, true);
+
+    xhr.onreadystatechange = function () {
+      if (this.status == 200) {
+        let result = JSON.parse(this.responseText);
+        resultElement.innerHTML = result.data;
+        errorElement.innerHTML = "";
+      } else {
+        let result = JSON.parse(this.response);
+        resultElement.innerHTML = "";
+        errorElement.innerHTML = result.msg;
+      }
+    }
+
+    xhr.send();
+  })
+</script>
