@@ -2,6 +2,8 @@
 
 This is a practical exercise of SIT737 (Week 4)
 
+![image.png](image.png)
+
 ## Features included
 - Logging with `Winston`
   - All logs are stored at **logs/combined.log**
