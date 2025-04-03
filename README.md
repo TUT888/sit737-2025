@@ -4,6 +4,10 @@ This is a practical exercise of SIT737 (Week 5, pass task)
 
 ![image.png](image.png)
 
+## New in this task - Containerization
+- Step by step process: [Containerization](#containerization)
+- How to run: [Run Docker Container](#run-docker-container)
+
 ## Step by step process
 Step-by-step instructions that explain the process as below:
 ### Development
@@ -21,7 +25,7 @@ Step-by-step instructions that explain the process as below:
     - Define the endpoint APIs with GET request (add, sub, mul, div)
 4. **Start the app with the defined port**
 
-### Containerization <span style="color: red">(new)</span>
+### Containerization
 1. Create a Dockerfile: [Dockerfile](./Dockerfile)
     - Specify the node version
     - Define the path to the application
@@ -75,7 +79,7 @@ Step-by-step instructions that explain the process as below:
 - New calculator options for web UI `localhost:3040`
 
 ## How to run
-### Node.js application
+### Run Node.js application
 - Step 1: Clone this repository branch
     ```
     git clone -b prac5p https://github.com/TUT888/sit737-2025.git
@@ -89,7 +93,7 @@ Step-by-step instructions that explain the process as below:
     npm start
     ```
 
-### Docker container <span style="color: red">(new)</span>
+### Run docker container
 - Step 1: Pull the docker image
     ```
     docker pull tut888/app-service1-5p:latest
