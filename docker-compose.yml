@@ -1,0 +1,13 @@
+version: '3'
+services:
+  service1:
+    build: .
+    container_name: service1-container
+    ports:
+      - "8000:3040"
+  
+  service2:
+    build: .
+    container_name: service2-container
+    ports:
+      - "3000:3040"
