@@ -1,0 +1,7 @@
+version: '3'
+services:
+  my-service:
+    build: .
+    container_name: my-service-container
+    ports:
+      - "8000:3040"
