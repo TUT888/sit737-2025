@@ -4,4 +4,4 @@ services:
     build: .
     container_name: my-service-container
     ports:
-      - "8000:3040"
+      - "8080:8080"

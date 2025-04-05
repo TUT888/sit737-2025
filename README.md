@@ -13,7 +13,7 @@ The step-by-step instructions is provided below.
 2. Containerize the application
     - With `Dockerfile`
       ```
-      docker build -t your-image-name
+      docker build -t your-image-name .
       ```
     - With `docker-compose.yml`
       ```
@@ -63,5 +63,5 @@ After creating the Google Cloud repository, we should be provided the path to th
     ```
 3. Run the container
     ```bash
-    docker run -p 3040:3040 <the-path-to-your-repository>/<image-name>
+    docker run -p 8080:8080 <the-path-to-your-repository>/<image-name>
     ```

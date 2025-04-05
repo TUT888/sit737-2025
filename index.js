@@ -4,7 +4,7 @@ const app = express();
 // Serve all files in public folder
 app.use(express.static(__dirname + '/public'));
 // Define the port
-const port = 3040;
+const port = 8080;
 
 // ------ Logging  ------ //
 const winston = require('winston');

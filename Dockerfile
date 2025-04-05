@@ -12,5 +12,6 @@ RUN npm install
 # Bundle the app source
 COPY . .
 
-EXPOSE 3040
-CMD ["node", "index.js"]
+EXPOSE 8080
+# CMD ["node", "index.js"]
+CMD ["npm", "run", "start", "--host", "0.0.0.0", "--port", "8080"]
