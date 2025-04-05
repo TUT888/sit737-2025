@@ -25,7 +25,7 @@ Step-by-step instructions that explain the process as below:
     - Define the endpoint APIs with GET request (add, sub, mul, div)
 4. **Start the app with the defined port**
 
-### Containerization
+### Containerization (new)
 1. Create a Dockerfile: [Dockerfile](./Dockerfile)
     - Specify the node version
     - Define the path to the application
@@ -44,6 +44,8 @@ Step-by-step instructions that explain the process as below:
         - The directory to build the application (must include Dockerfile)
         - Container name for the service
         - Mapping the ports (`host-machine-port`:`container-port`)
+        - Container health check setting
+        - Container restart condition
 4. Start Docker Compose environment
     ```
     docker compose up
@@ -93,7 +95,8 @@ Step-by-step instructions that explain the process as below:
     npm start
     ```
 
-### Run docker container
+### Run docker container (new)
+#### Run
 - Step 1: Pull the docker image
     ```
     docker pull tut888/app-service1-5p:latest
@@ -102,3 +105,9 @@ Step-by-step instructions that explain the process as below:
     ```
     docker run -p 8000:8000 app-service1-5p
     ```
+
+#### Health check
+To check the container health, use following command:
+```
+docker ps
+```
