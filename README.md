@@ -1,113 +1,85 @@
-# SIT737 - 2025 - Prac 5p
+# SIT737 - 2025 - Task 6P
 
-This is a practical exercise of SIT737 (Week 5, pass task)
+In this task, we will create a Kubernetes Cluster for a containerized application.
 
-![image.png](image.png)
+In general, the activities includes:
+- Containerization
+- Kubernetes Cluster setup
+- Kubernetes Deployment and Service
 
-## New in this task - Containerization
-- Step by step process: [Containerization](#containerization)
-- How to run: [Run Docker Container](#run-docker-container)
+Detailed step-by-step instructions provided below.
 
-## Step by step process
-Step-by-step instructions that explain the process as below:
-### Development
-1. **Set up server**
-    - Import the express
-    - Create a new express server and serve all files in public folder
-    - Define the port
-2. **Set up winston logger**
-    - Import winston
-    - Create new winston logger, which will log all important level of info or less to `combined.log` and error in `error.log`
-    - Set up the logger to print the log to the console in development only
-3. **Define the services**
-    - Prepare the calculation, input validation and error handling functions
-    - Define the main entry of the web app, rendering `index.html` by default
-    - Define the endpoint APIs with GET request (add, sub, mul, div)
-4. **Start the app with the defined port**
+![workload](image.png)
 
-### Containerization (new)
-1. Create a Dockerfile: [Dockerfile](./Dockerfile)
+
+## Containerization
+1. Create a [Dockerfile](./Dockerfile) in the [project](./project) folder
     - Specify the node version
     - Define the path to the application
     - Copy all dependencies requirements from package*.json to current path
     - Use `RUN npm install` to install all requirements
     - Bundle the app source (`index.js`)
     - Expose the app to specified port, and add run command for the image
-2. Build the Docker image named `app-service1-5p` and `app-service2-5p`
+2. Build the Docker image named `prac6p-service` from the resources in the [project](./project) folder
     ```
-    docker build -t app-service1-5p .
-    docker build -t app-service2-5p .
+    docker build -t prac6p-service ./project
     ```
-3. Create a Docker compose file [docker-compose.yml](./docker-compose.yml)
-    - Specify the version
-    - Define the services, each needs to include
-        - The directory to build the application (must include Dockerfile)
-        - Container name for the service
-        - Mapping the ports (`host-machine-port`:`container-port`)
-        - Container health check setting
-        - Container restart condition
-4. Start Docker Compose environment
+3. Run the container to ensure it works correctly
     ```
-    docker compose up
+    docker run -p 3040:3040 prac6p-service
     ```
-5. Test the application of each service using the mapped port. In this application, as defined in `docker-compose.yml`, we have 2 services:
-    - Port 8000 for service 1 <br>
-      => Access the calculation through `http://localhost:8000/add?n1=1&n2=2`
-    - Port 3000 for service 2 <br>
-      => Access the calculation through `http://localhost:3000/add?n1=1&n2=2`
-6. Push the Docker image to a registry
+4. Tag and push the image to DockerHub
     ```
-    docker tag app-service1-5p <yourusername>/app-service1-5p:latest
-    docker push <yourusername>/app-service1-5p:latest
+    docker tag prac6p-service tut888/sit737-prac6p-service
+    docker push tut888/sit737-prac6p-service
     ```
 
-## Features included
-### Base feature
-- Logging with `Winston`
-    - All logs are stored at **logs/combined.log**
-    - Error logs are stored at **logs/error.log**
-- Calculator services API:
-    - Addition operation at `localhost:3040/add?n1={n1}&n2={n2}`
-    - Subtraction operation at `localhost:3040/sub?n1={n1}&n2={n2}`
-    - Multiplication operation at `localhost:3040/mul?n1={n1}&n2={n2}`
-    - Division operation at `localhost:3040/div?n1={n1}&n2={n2}`
-- Calculator web UI at `localhost:3040`
+## Kubernetes Cluster setup
+1. Activate Hyper-V:
+    
+    **Control Panel** > **Turn Windows Features On or Off** > **Select Hyper-V**
 
-### Updated advanced feature
-- New calculator services API:
-    - Exponentiation operation at `localhost:3040/exp?n1={n1}&n2={n2}`
-    - Square root operation at `localhost:3040/sqrt?n1={n1}`
-    - Modulo operation at `localhost:3040/mod?n1={n1}&n2={n2}`
-- New calculator options for web UI `localhost:3040`
+2. Install and enable Kubernetes:
 
-## How to run
-### Run Node.js application
-- Step 1: Clone this repository branch
+    **Start Docker** > **Setting** > **Kubernetes** > **Enable Kubernetes** > **Apply and Restart**
+
+3. Deploy the Dashboard UI:
     ```
-    git clone -b prac5p https://github.com/TUT888/sit737-2025.git
-    ```
-- Step 2: Install dependencies (you must have Node.js installed in your device first)
-    ```
-    npm install
-    ```
-- Step 3: Run the server:
-    ```
-    npm start
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
     ```
 
-### Run docker container (new)
-#### Run
-- Step 1: Pull the docker image
+4. Initialize `.yaml` files to:
+    - Create sample user: [dashboard-adminuser.yaml](./dashboard-adminuser.yaml)
+    - Create Cluster Role Binding: [cluster_role_binding.yaml](./cluster_role_binding.yaml)
+
+5. Apply the `.yaml` files:
     ```
-    docker pull tut888/app-service1-5p:latest
-    ```
-- Step 2: Run the container
-    ```
-    docker run -p 8000:8000 app-service1-5p
+    kubectl apply -f dashboard-adminuser.yaml
+    kubectl apply -f dashboard-adminuser.yaml
     ```
 
-#### Health check
-To check the container health, use following command:
-```
-docker ps
-```
+## Kubernetes Deployment and Service
+1. Login to Dashboard
+    1. Launch the dashboard (serving on localhost:8001 by default)
+        ```
+        kubectl proxy
+        ```
+    2. Create login token for created user
+        ```
+        kubectl -n kubernetes-dashboard create token admin-user
+        ```
+    3. Copy the generated token to login and access the dashboard using below URL:
+
+        `http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`
+2. Initialize `.yaml` files to:
+    - Create pod: [createPod.yaml](./createPod.yaml)
+    - Create replica set: [createReplicaSet.yaml](./createReplicaSet.yaml)
+    - Create deployment: [createDeployment.yaml](./createDeployment.yaml)
+    - Create service: [createService.yaml](./createService.yaml)
+3. Apply the `.yaml` files:
+    ```
+    kubectl apply -f createPod.yaml
+    kubectl apply -f createReplicaSet.yaml
+    kubectl apply -f createDeployment.yaml
+    kubectl apply -f createService.yaml
+    ```

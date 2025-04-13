@@ -1,0 +1,14 @@
+version: '3'
+services:
+  service1:
+    build: .
+    container_name: prac5p-service
+    ports:
+      - "8000:3040"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "<http://localhost:8000>"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
