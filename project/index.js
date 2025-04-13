@@ -37,6 +37,7 @@ const mul = (n1, n2) => { return n1 * n2; }
 const exp = (n1, n2) => { return n1 ** n2; }
 const sqrt = (n) => { return Math.sqrt(n); }
 const mod = (n1, n2) => { return n1 % n2; }
+const log = (n) => { return Math.log(n); }
 
 const validateInput = (n1, n2, operation) => {
   // Log the information received from request
@@ -51,7 +52,7 @@ const validateInput = (n1, n2, operation) => {
   }
 
   // If the operation is square root, we don't need n2
-  if (operation !== "square root") {
+  if (operation !== "square root" && operation != "logarithm") {
     if (isNaN(n2)) {
       throw new Error("Num 2 is incorrectly defined");
     }
@@ -133,6 +134,29 @@ app.get("/mod", (req, res) => {
 
     // Calculate the result and send JSON response
     const result = mod(n1, n2);
+    res.status(200).json({
+      statuscode: 200,
+      data: result
+    });
+  } catch (error) {
+    // Catch the thrown exception if encounter errors 
+    errorHandling(error);
+    res.status(500).json({
+      statuscode: 500,
+      msg: error.toString()
+    })
+  }
+})
+
+// Logarithm 
+app.get("/log", (req, res) => {
+  try {
+    // Receive and validate input numbers
+    const n1 = parseFloat(req.query.n1);
+    validateInput(n1, null, "logarithm");
+
+    // Calculate the result and send JSON response
+    const result = log(n1);
     res.status(200).json({
       statuscode: 200,
       data: result

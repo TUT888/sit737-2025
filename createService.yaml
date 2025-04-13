@@ -1,13 +1,11 @@
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: prac6p-service 
+  name: prac6c-service 
 spec: 
   type: LoadBalancer
   selector:
-    app: myapp
-    tier: backend
+    app: myapp-6c
   ports: 
-    - protocol: TCP 
-      port: 3040 
+    - port: 3000
       targetPort: 3040

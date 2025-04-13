@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prac6p-deployment
+  name: prac6c-deployment
   labels:
-    app: myapp
-    tier: backend
+    app: myapp-6c
 spec:
   # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      tier: backend
+      app: myapp-6c
   template:
     metadata:
       labels:
-        tier: backend
+        app: myapp-6c
     spec:
       containers:
       - name: node-cal-service
-        image: tut888/sit737-prac6p-service
+        image: prac6-service:plus
+        imagePullPolicy: Never
         ports:
         - containerPort: 3040
