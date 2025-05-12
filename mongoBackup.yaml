@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongo-backup-manual
+spec:
+  template:
+    spec:
+      containers:
+        - name: backup
+          image: mongo
+          command:
+            - /bin/sh
+            - -c
+            - |
+              TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+              mkdir -p /backup/$TIMESTAMP && \
+              mongodump --uri="mongodb://samplemongouser:samplesecurepw@prac9p-mongo-svc:27017/cloud-prac9p?authSource=cloud-prac9p" --out=/backup/$TIMESTAMP
+          volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+      restartPolicy: OnFailure
+      volumes:
+        - name: backup-storage
+          hostPath:
+            path: /run/desktop/mnt/host/c/Users/tatta/Desktop/MongoBackupFolder
+            type: DirectoryOrCreate

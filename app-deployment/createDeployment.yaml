@@ -30,4 +30,5 @@ spec:
               name: prac9p-mongo-secret
               key: mongo-password  # App gets MongoDB password from Secret
         - name: MONGO_URI
-          value: "mongodb://$(MONGO_USER):$(MONGO_PASSWORD)@prac9p-mongo-svc:27017/cloud-prac9p?authSource=admin"
+          value: "mongodb://samplemongouser:samplesecurepw@prac9p-mongo-svc:27017/cloud-prac9p?authSource=cloud-prac9p" # If use created account
+          # value: "mongodb://$(MONGO_USER):$(MONGO_PASSWORD)@prac9p-mongo-svc:27017/cloud-prac9p?authSource=admin" # If use the admin account
