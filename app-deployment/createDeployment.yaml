@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prac9p-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp-9p
+  template:
+    metadata:
+      labels:
+        app: myapp-9p
+    spec:
+      containers:
+      - name: node-cal-service
+        image: prac9p-service:mongo
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3040
+        env:
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: prac9p-mongo-secret
+              key: mongo-user  # App gets MongoDB username from Secret
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: prac9p-mongo-secret
+              key: mongo-password  # App gets MongoDB password from Secret
+        - name: MONGO_URI
+          value: "mongodb://$(MONGO_USER):$(MONGO_PASSWORD)@prac9p-mongo-svc:27017/cloud-prac9p?authSource=admin"

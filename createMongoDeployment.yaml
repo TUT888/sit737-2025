@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prac9p-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prac9p-mongo
+  template:
+    metadata:
+      labels:
+        app: prac9p-mongo
+    spec:
+      containers:
+        - image: mongo
+          name: mongo
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: prac9p-mongo-secret
+                  key: mongo-user
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: prac9p-mongo-secret
+                  key: mongo-password
+          volumeMounts:
+            - mountPath: /data/db
+              name: prac9p-mongo-volume
+      volumes:
+        - name: prac9p-mongo-volume
+          persistentVolumeClaim:
+            claimName: prac9p-mongo-pvc

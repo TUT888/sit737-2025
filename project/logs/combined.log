@@ -1,0 +1,6 @@
+{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and 2 received for addition","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 1 and 2 received for subtraction","service":"calculator-microservice"}
+{"level":"info","message":"Parameters 25 and null received for square root","service":"calculator-microservice"}
