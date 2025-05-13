@@ -6,7 +6,7 @@ This task is **extended from** [Task 6.2C](https://github.com/TUT888/sit737-2025
 ## About the project directory tree
 - **/**: all new config files added for mongodb
 - **/project**: includes the project source code with `Dockerfile` and `docker-compose.yaml`
-- **/app-deployment**: includes kubernetes config files (`.yaml`) from previous task (Task 6.2C)
+- **/app-deployment**: includes the project kubernetes config files (`.yaml`) from previous task (Task 6.2C)
 
 ## Table of contents
 In general, the activities includes:
