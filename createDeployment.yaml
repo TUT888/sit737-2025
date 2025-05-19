@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prac6p-deployment
+  name: simple-app-deployment
   labels:
     app: myapp
-    tier: backend
+    tier: calculator-backend
 spec:
   # modify replicas according to your case
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      tier: backend
+      tier: calculator-backend
   template:
     metadata:
       labels:
-        tier: backend
+        tier: calculator-backend
     spec:
       containers:
-      - name: node-cal-service
+      - name: simple-calculator-service
         image: tut888/sit737-prac6p-service
         ports:
         - containerPort: 3040
