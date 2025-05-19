@@ -38,7 +38,7 @@ Therefore, instead of pushing the image to GCP container registry, we can login 
 
 For GCP deployment, we can either use the remote Cloud Console or Google Cloud SDK Shell in our computer. In my case, I use the Google Cloud SDK Shell, following below steps:
 
-**Login**
+### Login
 - Open Google Cloud SDK Shell
 - Login to get access to cloud and target project
     ```bash
@@ -47,7 +47,7 @@ For GCP deployment, we can either use the remote Cloud Console or Google Cloud S
     gcloud config set compute/zone <YOUR-COMPUTE-ZONE> # Ex: australia-southeast1-b
     ```
 
-**Create Kubernetes Cluster**
+### Create Kubernetes Cluster
 
 We can create a Kubernetes Cluster by providing its name, number of nodes and the compute zone. In this case, our cluster has:
 - Name: `simple-k8s-cluster`
@@ -63,7 +63,7 @@ After successfully created a cluster, we confirm it by listing all cluster with:
 gcloud container clusters list
 ```
 
-**Authenicate the cluster**
+### Authenicate the cluster
 
 Before using, we must authenticate `kubectl` with the newly created cluster by getting credential with following command:
 ```bash
@@ -83,14 +83,14 @@ kubectl apply -f createService.yaml
 ```
 
 ## Check the running pods and services
-**Check the running pods**
+### Check the running pods
 
 If you have 3 replicas specified in deployment yaml, you should see 3 pods are running with following commands
 ```bash
 kubectl get pods
 ```
 
-**Check the running services**
+### Check the running services
 ```bash
 kubectl get services
 ```
@@ -117,13 +117,13 @@ Google Cloud Platform provides UI for monitoring our deployed application.
 3. On the navigation bar, select Metrics Explorer
 4. Choose Resource Type as Kubernetes Container
 5. Choose the metrics and visualisation type you want to explore. For example
-    - kubernetes.io/container/cpu/request_utilization
-    - kubernetes.io/container/memory/request_utilization
+    - `kubernetes.io/container/cpu/request_utilization`
+    - `kubernetes.io/container/memory/request_utilization`
 
 **Note: In this task, since I don't have the permission to set the *Resource Type* to *Kubernetes Container*, the monitoring will be done using the commands in next section**
 
 ## Monitoring with commands
-**View resource usage**
+### View resource usage
 Get CPU and memory usage with `kubectl top`. In this case, `default` namespace is used for all resources unless you specify a different one
 ```bash
 kubectl top pod --namespace=default
@@ -139,7 +139,7 @@ View cluster-level resource usage
 kubectl top nodes
 ```
 
-**View the logs**
+### View the logs
 ```bash
 kubectl logs <POD-NAME>
 ```
